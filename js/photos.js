@@ -3,7 +3,7 @@ import {showBigPhoto} from './fullPhoto.js';
 const photoListElement =  document.querySelector('.pictures');
 const photoTemplateElement = document.querySelector('#picture').content.querySelector('.picture');
 
-// клонируем шаблон фото и заполняет данными
+
 const createPhotos = ((data) => {
   const {url, likes, comments} = data;
   const photoElement = photoTemplateElement.cloneNode(true);
@@ -20,8 +20,8 @@ const createPhotos = ((data) => {
 });
 
 
-// заполняем documentFragment фото и вставляем в список фото
 const renderPhotos = (photos) => {
+  photoListElement.querySelectorAll('.picture').forEach((photo) => photo.remove());
   const photosFragment = document.createDocumentFragment();
 
   photos.forEach((photo) => {
