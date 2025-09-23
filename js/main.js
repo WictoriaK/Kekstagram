@@ -8,6 +8,7 @@ import {turnFilterOn, filterPhotos, onFilterClick} from './filter-photos.js';
 import {showGetAlert} from './utils.js';
 
 
+
 const onGetImageSuccess = (data) => {
   turnFilterOn(data);
   renderPhotos(filterPhotos());

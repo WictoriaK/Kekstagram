@@ -1,6 +1,8 @@
 import { isEscapeKey } from './utils.js';
 
+
 const COMMENTS_AMOUNT_TO_SHOW = 5;
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png', 'webp', 'avif'];
 const bigPhotoElement = document.querySelector('.big-picture');
 const commentTemplate = document.querySelector('#social-comment').content.querySelector('.social__comment');
 const commentsList = document.querySelector('.social__comments');
@@ -8,6 +10,9 @@ const body = document.querySelector('body');
 const commentCount = document.querySelector('.social__comment-count');
 const commentsLoaderBtn = document.querySelector('.comments-loader');
 const closeBigPhotoBtn = document.querySelector('.big-picture__cancel');
+
+const photoFileChooser = document.querySelector('.img-upload__input');
+const photoPreview = document.querySelector('.img-upload__preview img');
 
 let shownComments = 0;
 let allComments = [];
@@ -75,6 +80,18 @@ const renderBigPhoto = ({url, likes, description, comments}) => {
   bigPhotoElement.querySelector('.comments-count').textContent = comments.length;
   bigPhotoElement.querySelector('.social__caption').textContent = description;
 };
+
+photoFileChooser.addEventListener('change', () => {
+  const file = photoFileChooser.files[0];
+  const fileName = file.name.toLowerCase();
+
+  const matches = FILE_TYPES.some((end) =>  fileName.endsWith(end));
+
+  if(matches) {
+    photoPreview.src = URL.createObjectURL(file);
+  }
+
+});
 
 const showBigPhoto = (data) => {
   allComments = data.comments;

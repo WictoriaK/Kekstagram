@@ -158,6 +158,7 @@ const onPhotoEffectChange = (evt) => {
 
 const initSliderEffect = () => {
   createSlider(sliderOptionsEffect[chosenEffect]);
+  hideSlider();
   effectsList.addEventListener('change', onPhotoEffectChange);
 };
 
